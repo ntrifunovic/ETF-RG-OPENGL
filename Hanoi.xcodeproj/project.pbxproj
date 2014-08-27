@@ -35,7 +35,6 @@
 		78A3C11519A8F9EE00381FEC /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		78A3C11A19A9230E00381FEC /* neheTGATexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = neheTGATexture.cpp; path = ../../../Downloads/nehebeta/lesson05/neheTGATexture.cpp; sourceTree = "<group>"; };
 		78A3C11B19A9230E00381FEC /* neheTGATexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = neheTGATexture.h; path = ../../../Downloads/nehebeta/lesson05/neheTGATexture.h; sourceTree = "<group>"; };
-		78A3C11E19A9257000381FEC /* wall_512_1_05.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = wall_512_1_05.tga; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +57,6 @@
 				78A3C11319A8F9E700381FEC /* OpenGL.framework */,
 				78305D4719A8F81A001233C8 /* Hanoi */,
 				78305D4619A8F81A001233C8 /* Products */,
-				78A3C11E19A9257000381FEC /* wall_512_1_05.tga */,
 			);
 			sourceTree = "<group>";
 		};

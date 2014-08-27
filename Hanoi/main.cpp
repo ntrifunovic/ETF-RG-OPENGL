@@ -60,6 +60,9 @@ bool simulacija = false;
 int source = NO_SOURCE;
 int moves = 0;
 
+bool lbutton = false;
+int oldx, oldy;
+
 void generateSolution(int n, int source, int destination) {
   if(n==0) return;
   
@@ -179,7 +182,9 @@ void renderScene() {
     } else {
       glColor3f(1.0f, 1.0f, 10.0f);  // needs to be called before RasterPos
       renderString(50, 120, "Moves:" + std::to_string(moves));
-      int timeSinceStart =  eplasedTime - startTime;
+      static int timeSinceStart;
+      if(discs[2].size() < numDisks)
+        timeSinceStart = eplasedTime - startTime;
       renderString(-50, 120, "Time:" + std::to_string(timeSinceStart/1000) + "s");
     
       if (eplasedTime < errorTime) {
@@ -194,7 +199,6 @@ void renderScene() {
     }
   }
 
-  
   glLightfv(GL_LIGHT0, GL_AMBIENT, AmbijentalnoSvetlo);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, DifuznoSvetlo);
   glLightfv(GL_LIGHT0, GL_POSITION, PozicijaSvetla[0]);
@@ -323,6 +327,15 @@ void menu(int value) {
 }
 
 void mouse(int button, int state, int x, int y) {
+  if (button == GLUT_LEFT_BUTTON) {
+    oldx = x;
+    oldy = y;
+    if (state == GLUT_DOWN)
+      lbutton = true;
+    else
+      lbutton = false;
+  }
+  
   if(startTime == NOT_STARTED)
     return;
   
@@ -371,6 +384,16 @@ void mouse(int button, int state, int x, int y) {
   }
 }
 
+void motion(int x, int y) {
+  if (lbutton) {
+    PozicijaSvetla[0][0] -= (x - oldx);
+    PozicijaSvetla[0][1] -= (y - oldy);
+  }
+  oldx = x;
+  oldy = y;
+  glutPostRedisplay();
+}
+
 int main(int argc, char **argv) {
   
 	// init GLUT and create window
@@ -411,6 +434,7 @@ int main(int argc, char **argv) {
   glutKeyboardFunc(kbd);
   glutSpecialFunc(skbd);
   glutMouseFunc(mouse);
+  glutMotionFunc(motion);
   
   glutCreateMenu(menu);
   glutAddMenuEntry("Teze", TEZE);
